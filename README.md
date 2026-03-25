@@ -11,5 +11,7 @@ TODO:
 
 2. Nice to have (TODO):
 ```
+    - https://www.npmjs.com/package/cli-progress add cli progress bar 
     - Infodoc redirect
+    - pointer to be a relatve locator selector
 ```

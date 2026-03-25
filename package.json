@@ -4,7 +4,8 @@
   "description": "",
   "type": "module",
   "scripts": {
-    "dev": "tsx main.ts"
+    "dev": "tsx main.ts",
+    "fetch-title": "tsx fetch.ts"
   },
   "keywords": [],
   "author": "",
