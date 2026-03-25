@@ -5,7 +5,7 @@ const sampleUrl = 'https://itsm.services.sap/now/cwf/agent/record/sn_customerser
 
 const browser = await chromium.launch({
     // headless: false, // if headless false, then you can see the browser openned
-    channel: 'msedge'
+    channel: 'msedge' // choose one browser that you don't ususally clean sso login information
 });
 const page = await browser.newPage();
 await page.goto(
