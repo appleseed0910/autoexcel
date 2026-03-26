@@ -1,6 +1,6 @@
 
 import { chromium } from 'playwright';
-import { entries } from './main.js';
+import { entries } from './load.ts';
 
 // const sampleUrl = 'https://itsm.services.sap/now/cwf/agent/record/sn_customerservice_case/575a8cf93b96fadca792519e53e45abc';
 

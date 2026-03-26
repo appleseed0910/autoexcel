@@ -1,4 +1,10 @@
-TODO:
+## Structure
+
+1. fetch (from xlsx) [I/O : xlsx/entries]
+    - load (page with playwright) [I/O : entries/data]
+2. write [I/O : data/xlsx]
+
+## TODO:
 
 1. future structure:
 ```
