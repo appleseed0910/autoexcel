@@ -15,3 +15,16 @@ TODO:
     - Infodoc redirect
     - pointer to be a relatve locator selector
 ```
+
+3. notes:
+    - `pnpm exec tsc --init` to have init tsconfig file
+
+---
+
+4. questions:
+    - node:fs 和 fs 有啥区别？
+    - 为啥要 先 readFileSync再丢给xlsx load
+    - JSON.stringyfy(data, null, 2)
+    - `const [, end] = range.split(':')` 是啥意思
+    - `const endRow = Number(end.match(/\d+/)?.[0])` 又是啥！
+    - ts 里 possible undefined也太多了 还是研究一下吧

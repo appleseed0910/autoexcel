@@ -5,15 +5,17 @@
   "type": "module",
   "scripts": {
     "dev": "tsx main.ts",
-    "fetch-title": "tsx fetch.ts"
+    "fetch-snow": "tsx fetch.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@10.18.3",
   "devDependencies": {
+    "@types/node": "^25.5.0",
     "playwright": "^1.58.2",
     "tsx": "^4.21.0",
-    "typescript": "^6.0.2"
+    "typescript": "^6.0.2",
+    "xlsx": "^0.18.5"
   }
 }

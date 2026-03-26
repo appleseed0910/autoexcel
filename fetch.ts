@@ -1,24 +1,36 @@
 
 import { chromium } from 'playwright';
+import { entries } from './main.js';
 
-const sampleUrl = 'https://itsm.services.sap/now/cwf/agent/record/sn_customerservice_case/575a8cf93b96fadca792519e53e45abc';
+// const sampleUrl = 'https://itsm.services.sap/now/cwf/agent/record/sn_customerservice_case/575a8cf93b96fadca792519e53e45abc';
 
 const browser = await chromium.launch({
-    // headless: false, // if headless false, then you can see the browser openned
+    headless: false, // if headless false, then you can see the browser openned
     channel: 'msedge' // choose one browser that you don't ususally clean sso login information
 });
 const page = await browser.newPage();
-await page.goto(
-    sampleUrl,
-    {waitUntil: 'domcontentloaded'}
-);
 
-const text = await page.locator('h1').textContent()
-console.log(text);
+for (const entry of entries) {
+    try {
+        await page.goto(entry.url, { waitUntil: 'domcontentloaded'})
 
-await page.getByRole('tab', { name: 'Record Information'}).click()
-const pointer = await page.locator('.needs-clamping').nth(5).getAttribute('title')
-console.log(pointer);
+        const text = await page.locator('h1').textContent()
+        console.log(text);
+        
+        await page.getByRole('tab', { name: 'Record Information' }).click()
 
-browser.close()
+        // Bad selector lol
+        let pointer = await page.locator('.needs-clamping').nth(5).getAttribute('title')
+
+        // if the case contains a field "Tenant Type" then the pointer whould be 7th element
+        if (pointer?.length !== 24) pointer = await page.locator('.needs-clamping').nth(6).getAttribute('title')
+        console.log(pointer);
+    } catch (e) {
+        console.error('Faild on URL ' + '${url}');
+    }
+}
+
+
+await browser.close()
 console.log("Congrats you have gone so far!");
+
