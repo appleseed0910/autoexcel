@@ -2,35 +2,48 @@
 import { chromium } from 'playwright';
 import { entries } from './load.ts';
 
-// const sampleUrl = 'https://itsm.services.sap/now/cwf/agent/record/sn_customerservice_case/575a8cf93b96fadca792519e53e45abc';
+const fetch = async () => {
 
-const browser = await chromium.launch({
-    headless: false, // if headless false, then you can see the browser openned
-    channel: 'msedge' // choose one browser that you don't ususally clean sso login information
-});
-const page = await browser.newPage();
+    // open browser
+    const browser = await chromium.launch({
+        headless: false, // if headless false, then you can see the browser openned
+        channel: 'msedge' // choose one browser that you don't ususally clean sso login information
+    });
+    const page = await browser.newPage();
 
-for (const entry of entries) {
-    try {
-        await page.goto(entry.url, { waitUntil: 'domcontentloaded'})
+    // loop list
+    const data = []
+    for (const entry of entries) {
+        try {
+            await page.goto(entry.url, { waitUntil: 'domcontentloaded' })
 
-        const text = await page.locator('h1').textContent()
-        console.log(text);
-        
-        await page.getByRole('tab', { name: 'Record Information' }).click()
+            const title = await page.locator('h1').textContent()
+            console.log(title);
 
-        // Bad selector lol
-        let pointer = await page.locator('.needs-clamping').nth(5).getAttribute('title')
+            await page.getByRole('tab', { name: 'Record Information' }).click()
 
-        // if the case contains a field "Tenant Type" then the pointer whould be 7th element
-        if (pointer?.length !== 24) pointer = await page.locator('.needs-clamping').nth(6).getAttribute('title')
-        console.log(pointer);
-    } catch (e) {
-        console.error('Faild on URL ' + '${url}');
+            // Bad selector lol
+            let pointer = await page.locator('.needs-clamping').nth(5).getAttribute('title')
+
+            // if the case contains a field "Tenant Type" then the pointer whould be 7th element
+            if (pointer?.length !== 24) pointer = await page.locator('.needs-clamping').nth(6).getAttribute('title')
+            console.log(pointer);
+
+            data.push({
+                cell: entry.cell,
+                title,
+                pointer
+            })
+        } catch (e) {
+            console.error('Faild on URL ' + '${url}');
+        }
     }
+
+    // close browser after list done
+    await browser.close()
+    return data
 }
 
+export default fetch
 
-await browser.close()
-console.log("Congrats you have gone so far!");
 

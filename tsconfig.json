@@ -31,6 +31,7 @@
     // Style Options
     // "noImplicitReturns": true,
     // "noImplicitOverride": true,
+    "noImplicitAny": true,
     // "noUnusedLocals": true,
     // "noUnusedParameters": true,
     // "noFallthroughCasesInSwitch": true,

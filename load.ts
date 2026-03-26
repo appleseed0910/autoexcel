@@ -27,4 +27,6 @@ cells?.forEach(cell => {
 })
 console.log(entries)
 
-export { entries }
+export { entries } 
+// This is a complete sync script, export variable after it obtains all necessary vals 
+// is okay, but a poor practise 
