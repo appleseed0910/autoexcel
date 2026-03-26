@@ -16,16 +16,18 @@ const cells = range?.split(':')
 
 const entries : Array<{
     cell: string,
+    title: string
     url: string
 }> = []
 
 cells?.forEach(cell => {
     entries.push({
         cell: cell,
+        title: sheet[cell]?.v?.slice(0, 16),
         url: sheet[cell]["l"]?.Target
     })
 })
-console.log(entries)
+// console.log(entries)
 
 export { entries } 
 // This is a complete sync script, export variable after it obtains all necessary vals 

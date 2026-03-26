@@ -34,3 +34,5 @@
     - `const [, end] = range.split(':')` 是啥意思
     - `const endRow = Number(end.match(/\d+/)?.[0])` 又是啥！
     - ts 里 possible undefined也太多了 还是研究一下吧
+    - Array.from(row)这是啥
+    - slice 和splice啥区别 亲亲？
