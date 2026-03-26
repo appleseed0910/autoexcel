@@ -6,6 +6,10 @@
 
 ## TODO:
 
+0. ~~Bug fix: 现在split的那个序列 是region的头和尾 只有两个entry，需要遍历其中哈~~
+    - 稀疏数据 vs 连续区间的思维差异，quick fix by Pa, `const cells = Object.keys(sheet).filter(k => !k.startsWith('!'))`
+0. 连续cell里总有失败的url，如何写入至少三次尝试再next
+
 1. future structure:
 ```
     - xlsx read script, excel to json(contain links)

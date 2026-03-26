@@ -8,13 +8,11 @@ const wb = xlsx.read(buf)
 const sheetName = wb.SheetNames[0]
 const sheet = wb.Sheets[sheetName!]!
 
-// console.log(JSON.stringify(sheet, null, 2));
+const cells = Object.keys(sheet).filter(k => !k.startsWith('!'))
 
-const range = sheet["!ref"]
-const cells = range?.split(':')
-// console.log(cells);
+// console.log(cells)
 
-const entries : Array<{
+const entries: Array<{
     cell: string,
     title: string
     url: string
@@ -29,6 +27,6 @@ cells?.forEach(cell => {
 })
 // console.log(entries)
 
-export { entries } 
-// This is a complete sync script, export variable after it obtains all necessary vals 
+export { entries }
+// This is a complete sync script, export variable after it obtains all necessary vals
 // is okay, but a poor practise 
