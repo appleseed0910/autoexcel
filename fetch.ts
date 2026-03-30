@@ -35,7 +35,14 @@ const fetch = async () => {
                 pointer
             })
         } catch (e) {
-            console.error('Faild on URL ' + '${url}');
+            console.error('Faild on URL ' + `${entry.url}`);
+            
+            // add error entry placeholder
+            data.push({
+                csnum: entry.title,
+                title: 'error entry',
+                pointer: 'error entry'
+            })
         }
     }
 
